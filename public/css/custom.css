@@ -1,0 +1,126 @@
+.app-header .logo {
+	width: 200px;
+	text-decoration: none; 
+}
+	.logo-span {
+		font-size: 20px;
+		color: black;
+		vertical-align: middle;
+	}
+	.logo-icon {
+		height: 40px;
+		margin: 0 2px 0 8px;
+	}
+
+.input-icon {
+    position: relative;
+    margin-left: 100px;
+    width: 20%;
+}
+	.input-icon i {
+	    color: black;
+	    display: block;
+	    position: absolute;
+	    margin: 11px 2px 4px 10px;
+	    width: 16px;
+	    height: 16px;
+	    font-size: 16px;
+	    text-align: center;
+	}
+
+	.input-icon input {
+	    padding-left: 33px !important;
+	}
+
+.card-header-right {
+	margin-right: 10px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+.card-footer-right {
+	margin-right: 10px;
+	margin-bottom: 10px;
+	text-align: right;
+}
+
+.info-study {
+	color: #3838b3;
+}
+
+.info-visa {
+	color: #20a8d8;
+}
+
+.card-body .message-title {
+    margin-top: 10px;
+    font: 18px/1.5 sans-serif;
+}
+
+.university-price {
+    font-size: 20px;
+}
+
+.university-img {
+	width: 10%;
+	margin-left: 10px;
+}
+	.university-img img{
+		width: 100%;
+	}
+
+.university-title {
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.university-kind {
+	font-size: 15px;
+    color: gray;
+    margin-left: 20px;
+}
+
+.university-date {
+	color: #09c18b;
+	margin-top: 20px;
+    margin-left: 10px;
+}
+
+.policy-detail {
+	height: 600px;
+	overflow: auto;
+}
+
+.confirm-policy {
+	text-align: right;
+	font-size: 20px;
+}
+
+	.confirm-policy input {
+		width: 20px;
+		height: 20px;
+	}
+
+	.confirm-policy span {
+		margin-right: 20px;
+	}
+
+.span-price {
+	color: #09c18b;
+}
+
+.confirm-admission {
+	text-align: center;
+}
+	.confirm-admission strong {
+		font-size: 30px;
+	}
+
+.btn-right {
+	float: right;
+	margin-bottom: 20px;
+}
+
+.invalid {
+	color: red;
+}
