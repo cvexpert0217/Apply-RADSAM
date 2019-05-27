@@ -99,7 +99,7 @@ Route::middleware('radasm.auth.user')->group(function () {
     Route::match('get', '/pay/{activity_id}', 'User\PayController@index')->name('pay.index');
     Route::match('post', '/pay/register', 'User\PayController@register')->name('pay.register');
     Route::match('get', '/upload/{activity_id}', 'User\UploadController@index')->name('upload.index');
-    Route::match('get', '/upload/save/doc-name', 'User\UploadController@storeDocName');
+    Route::match('post', '/upload/save/doc-name', 'User\UploadController@storeDocName');
     Route::match('post', '/upload/register', 'User\UploadController@register')->name('upload.register');
     Route::match('get', '/admission/{activity_id}', 'User\AdmissionController@index')->name('admission.index');
     Route::match('post', '/admission/confirm', 'User\AdmissionController@confirm')->name('admission.confirm');

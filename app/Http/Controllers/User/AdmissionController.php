@@ -15,9 +15,10 @@ class AdmissionController extends Controller
     {
         $activity_id = $request->route('activity_id');
         $assessment = Activity::get_assessment($activity_id);
-        $destinationPath = self::BASE_PATH . $assessment->first_name . " " . $assessment->last_name . "/";
+        // $destinationPath = self::BASE_PATH . $assessment->first_name . " " . $assessment->last_name . "/";
+        $destinationPath = self::BASE_PATH;
         $admission = Admission::get_one_by_assessment($assessment->assessment_id);
-        $file_url = $destinationPath . $admission->admission_image;
+        $file_url = $destinationPath . $admission->admission_realimage;
         $admission_text = $admission->admission_text;
         $data['activity_id'] = $activity_id;
         $data['file_url'] = $file_url;

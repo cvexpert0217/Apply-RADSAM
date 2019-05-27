@@ -88,12 +88,11 @@ $(document).ready(function($){
 	});
 
 	$('#accept_form').submit(function () {
-		var totalPrice = $('#accept_form input#sumPrice').val();
-        // alert(totalPrice);
-        // if (!isNaN(totalPrice)) {
-        // 	alert('1231');
-        // }
-        // 	return false;
+		var sumPrice = $('#accept_form input#sumPrice').val();
+		if (sumPrice === "") {
+			toastr.warning('Please, insert fee information correctly!', 'Fee Information');
+			return false;
+		}
 
 		$.ajax({
 			url : '/admin/university/accept',

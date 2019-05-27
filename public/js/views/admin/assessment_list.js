@@ -237,7 +237,13 @@ $(document).ready(function($){
 		});
 	});
 
-	$('#accept_btn').click(function(){
+	$('#accept_visa_form').submit(function () {
+		var sumPrice = $('#accept_visa_form input#sumPrice').val();
+		if (sumPrice === "") {
+			toastr.warning('Please, insert fee information correctly!', 'Fee Information');
+			return false;
+		}
+
 		$.ajax({
 			url : '/admin/assessment/accept_visa',
 			type : 'POST',
@@ -255,6 +261,8 @@ $(document).ready(function($){
 				}
 			}
 		});
+
+		return false;
 	});
 
 	function sumPrice(){

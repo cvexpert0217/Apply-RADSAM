@@ -21,7 +21,6 @@
                     <th width="200">Mobile</th>
                     <th width="200">Email</th>
                     <th width="200">Birthday</th>
-                    <th width="200">Address</th>
                     <th width="200">Major/field</th>
                     <th width="200">Registrant</th>
                     <th width="300">Register Date</th>
@@ -56,7 +55,6 @@
                       <td>{{$category->mobile_phone}}</td>
                       <td>{{$category->email}}</td>
                       <td>{{$category->birthday}}</td>
-                      <td>{{$category->street_address}}</td>
                       <td>{{$category->major}}</td>
                       <td>{{$category->user_name}}</td>
                       <td>{{$category->created_at}}</td>

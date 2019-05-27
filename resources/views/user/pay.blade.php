@@ -43,26 +43,27 @@
 												  <td>{{ $fee->price * $fee->quantity }}</td>
 											  </tr>
 										  @endforeach
-										  <tr><td colspan="4"></td></tr>
-										  <tr>
-											  <td>Total Price with out HST</td>
-											  <td colspan="3">{{ $total_out_hst }}</td>
-										  </tr>
-										  <tr>
-											  <td>HST</td>
-											  <td colspan="3">HST <?php echo $hst ?>%</td>
-										  </tr>
-										  <tr>
-											  <td>Total Price with HST</td>
-											  <td colspan="3">{{ $total_in_hst }}</td>
-										  </tr>
-										  <tr>
-											  <td>Payment Account</td>
-											  <td colspan="3">{{ $pay_account }}</td>
-										  </tr>
 									  @endif
 									  </tbody>
 									</table>
+									<div style="margin-top: 30px;">
+										<div class="form-group">
+											<strong class="col-md-3 col-form-label">Total Price without HST : </strong>
+											<label class="h5 text-info mb-0 mt-2">{{ $total_out_hst }}</label>
+										</div>
+										<div class="form-group">
+											<strong class="col-md-3 col-form-label">HST : </strong>
+											<label class="h5 text-info mb-0 mt-2">{{ $hst }}</label> %
+										</div>
+										<div class="form-group">
+											<strong class="col-md-3 col-form-label">Total Price with HST : </strong>
+											<label class="h5 text-primary mb-0 mt-2">{{ $total_in_hst }}</label>
+										</div>
+										<div class="form-group">
+											<strong class="col-md-3 col-form-label">Payment Account : </strong>
+											<label class="h5 text-danger mb-0 mt-2">{{ $pay_account }}</label>
+										</div>
+									</div>
 								</div>
 								<div class="card-footer-right">
 									<input type="file" id="pay_image_file" name="pay_image_file" accept="image/jpeg,.jpg,image/png,.png" style="opacity: 0;">
@@ -77,6 +78,25 @@
             	</div>
           	</div>
 		</form>
+		</div>
+	</div>
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Information</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label class="h5 text-danger mb-0 mt-2">You must upload capture image file that certificate your payment.</label>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-confirm">Open File</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection

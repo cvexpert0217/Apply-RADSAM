@@ -27,7 +27,7 @@
                   <tbody>
                   @if (count($admissions) === 0)
                     <tr>
-                      <td colspan="7">
+                      <td colspan="8">
                         There is nothing.
                       </td>
                     </tr>
@@ -56,7 +56,9 @@
                       <td>{{ $str_type }}</td>
                       <td>{{ $item->university_name }}</td>
                       <td>{{ $item->fee_price }}</td>
-                      <td>{{ $item->docs_name }}</td>
+                      <td>
+                        <a href="javascript:;" class="btn btn-docs" data-id="{{ $item->assessment_id }}">{{ $item->docs_name }}</a>
+                      </td>
                       <td>{{ $item->updated_at }}</td>
                       <td>{{ $item->user_name }}</td>
                     </tr>
@@ -75,6 +77,40 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="docsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Document List</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              {{csrf_field()}}
+              <table class="table table-responsive-sm" id="tableDocs">
+                <thead>
+                <tr>
+                  <th>Requirement</th>
+                  <th width="150px">File</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection
 
 @section('myscript')

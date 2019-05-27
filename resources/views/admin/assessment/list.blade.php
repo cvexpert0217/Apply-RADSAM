@@ -170,6 +170,7 @@
 					</button>
 				</div>
 				<form id="accept_visa_form">
+					{{csrf_field()}}
 					<div class="modal-body">
 						<input type="hidden" id="activity_id" name="activity_id">
 						<div class="row">
@@ -179,7 +180,6 @@
 						</div>
 						<div class="row">
 							<div class="col-12">
-								{{csrf_field()}}
 								<table class="table table-responsive-sm" id="tableFee">
 									<thead>
 									<tr>
@@ -199,7 +199,7 @@
 						<div class="form-group row">
 							<label class="col-md-3 col-form-label" for="sumPrice">Total Price without HST</label>
 							<div class="col-md-2">
-								<input type="text" class="form-control" id="sumPrice" name="sumPrice" readonly>
+								<input type="text" class="form-control" id="sumPrice" name="sumPrice" readonly required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -212,7 +212,7 @@
 						<div class="form-group row">
 							<label class="col-md-3 col-form-label" for="totalPrice">Total Price with HST</label>
 							<div class="col-md-2">
-								<input type="text" class="form-control" id="pay_price" name="pay_price" readonly>
+								<input type="text" class="form-control" id="pay_price" name="pay_price" readonly required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -238,11 +238,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Accept</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					</div>
 				</form>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary btn-accept" id="accept_btn">Accept</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				</div>
 			</div>
 		</div>
 	</div>

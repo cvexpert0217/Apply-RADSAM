@@ -17,7 +17,8 @@ class Payment extends Base
 			->leftjoin('tbl_assessment AS t2', 't1.assessment_id', '=', 't2.id')
 			->leftjoin('tbl_user AS t3', 't3.id', '=', 't2.user_id')
 			->leftjoin('tbl_transaction AS t4', 't4.assessment_id', '=', 't1.assessment_id')
-			->select('t1.id', 't1.assessment_id', 't2.first_name', 't2.last_name', 't2.assessment_type', 't4.pay_price', 't4.pay_image', 't4.pay_type', 't1.updated_at', 't3.name AS user_name');
+			->select('t1.id', 't1.assessment_id', 't2.first_name', 't2.last_name', 't2.assessment_type', 't4.pay_price', 't4.pay_image', 't4.pay_realimage', 't4.pay_type', 't1.updated_at', 't3.name AS user_name')
+			->orderBy('t1.updated_at', 'DESC');
 		if (isset($filter) && !blank($filter)) {
 			$query = self::conditions_for_activities($filter, $query);
 		}

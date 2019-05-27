@@ -1,12 +1,12 @@
 $(document).ready(function($){
     $('.btn-pay-bill').on('click', function () {
         $('input[name="pay_type"]').val(0);
-        $('#pay_image_file').click();
+        $('#infoModal').modal('show');
     });
 
     $('.btn-pay-paypal').on('click', function () {
         $('input[name="pay_type"]').val(1);
-        $('#pay_image_file').click();
+        $('#infoModal').modal('show');
     });
 
     $('#pay_image_file').on('change', function () {
@@ -16,4 +16,9 @@ $(document).ready(function($){
         $('input[name="pay_image"]').val(fileName);
         $('form').submit();
     });
+
+    $('.btn-confirm').on('click', function () {
+        $('#infoModal').modal('hide');
+        $('#pay_image_file').click();
+    });    
 });

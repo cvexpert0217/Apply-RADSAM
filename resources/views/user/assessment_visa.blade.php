@@ -329,7 +329,7 @@
                     <div class="row">
                       <div class="form-group col-sm-6">
                         <span class="numeric-invalid invalid"></span>
-                        <input type="text" name="gpa_score" class="form-control" id="gpa_score" required>
+                        <input type="number" name="gpa_score" class="form-control" id="gpa_score" required>
                       </div>
                     </div>
                   </div>
@@ -357,7 +357,7 @@
                   <div class="form-group col-sm-1">
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" id="english_proficiency_indicate" hidden="true">
                   <div class="form-group col-sm-1">
                   </div>
                   <div class="form-group col-sm-10">
@@ -366,18 +366,100 @@
                     </div>
                     <div class="radio">
                       <label for="academic">
-                        <input type="radio" id="academic" name="indicate" value="0"> Academic
+                        <input type="radio" id="academic" class="indicate" name="indicate" value="0"> Academic
                       </label>
                     </div>
                     <div class="radio">
                       <label for="general">
-                        <input type="radio" id="general" name="indicate" value="1" checked> General
+                        <input type="radio" id="general" class="indicate" name="indicate" value="1"> General
                       </label>
                     </div>
                   </div>
                   <div class="form-group col-sm-1">
                   </div>
                 </div>
+
+                <!-- ////// when english proficiency is true. -->
+                <div class="row" id="english_proficiency_true" hidden="true">
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div class="row">
+                      <strong for="overall">Over all<span style="color: red;"> *</span></strong>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <input type="number" name="indicate_overall" class="form-control" id="overall" min="0" max="10">
+                        <span>Please enter a value between 0 and 10.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div class="row">
+                      <strong for="writing">writing<span style="color: red;"> *</span></strong>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <input type="number" name="indicate_writing" class="form-control" id="writing" min="0" max="10">
+                        <span>Please enter a value between 0 and 10.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div class="row">
+                      <strong for="listening">listening<span style="color: red;"> *</span></strong>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <input type="number" name="indicate_listening" class="form-control" id="listening" min="0" max="10">
+                        <span>Please enter a value between 0 and 10.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div class="row">
+                      <strong for="reading">reading<span style="color: red;"> *</span></strong>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <input type="number" name="indicate_reading" class="form-control" id="reading" min="0" max="10">
+                        <span>Please enter a value between 0 and 10.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                  <div class="form-group col-sm-10">
+                    <div class="row">
+                      <strong for="speaking">speaking<span style="color: red;"> *</span></strong>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <input type="number" name="indicate_speaking" class="form-control" id="speaking" min="0" max="10">
+                        <span>Please enter a value between 0 and 10.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-1">
+                  </div>
+                </div>
+
+
+
                 <div class="row">
                   <div class="form-group col-sm-1">
                   </div>

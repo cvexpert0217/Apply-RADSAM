@@ -89,8 +89,9 @@ $(document).ready(function($){
 						var type = docs_info.docs_type;
 						var req_id = docs_info.docs_req_id;
 						var doc_name = docs_info.docs_name;
+						var doc_realname = docs_info.docs_realname;
 
-						createDocInfo(type, req_id, doc_name, data.name_dir);
+						createDocInfo(type, req_id, doc_name, doc_realname, data.name_dir);
 					}
 					$('#docsModal').modal('show');
 				}
@@ -98,7 +99,7 @@ $(document).ready(function($){
 		});
 	});
 
-	function createDocInfo(type, req_id, doc_name, name_dir) {
+	function createDocInfo(type, req_id, doc_name, doc_realname, name_dir) {
 		var req_str = "";
 		switch (type) {
 			case 0:
@@ -117,7 +118,7 @@ $(document).ready(function($){
 
 		var tr = '<tr>';
 		tr += '<td>' + req_str + '</td>';
-		tr += '<td>' + '<a href="' + name_dir + '/' + doc_name + '" download>' + doc_name + '</a>' + '</td>';
+		tr += '<td>' + '<a href="' + name_dir + '/' + doc_realname + '" download>' + doc_name + '</a>' + '</td>';
 		tr += '</tr>';
 
 		$('#docsModal #tableDocs tbody').append(tr);

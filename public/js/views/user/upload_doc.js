@@ -8,15 +8,28 @@ $(document).ready(function($){
         var file = $(this).val();
         var index = file.lastIndexOf("\\");
         var fileName = file.substring(index+1, file.length);
+        var extension = fileName.split('.')[1];
+        var realName = Date.now() + "." + extension;
         var doc_id = $(this).attr('data-id');
+        var docFile = $(this).prop('files')[0];
+        console.log(docFile);
+        var data = new FormData();
+        data.append('doc_id', doc_id);
+        data.append('doc_name', fileName);
+        data.append('doc_realname', realName);
+        data.append('doc_file', docFile);
         // store doc_name to db_allowcated_doc;
         $.ajax({
-            type: "GET",
-            data: {
-                'doc_id': doc_id,
-                'doc_name': fileName
+            type: "POST",
+            data: data,
+            beforeSend: function (request) {
+                return request.setRequestHeader('X-CSRF-Token', $('input[name="_token"]').val());
             },
-            dataType: 'json',
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
             url: "/upload/save/doc-name",
             success: function(response){
                 console.log(response);

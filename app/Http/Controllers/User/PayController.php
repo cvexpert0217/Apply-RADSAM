@@ -8,6 +8,7 @@ use App\Models\Admission;
 use App\Models\Assessment;
 use App\Models\MessageUser;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PayController extends Controller
@@ -44,19 +45,24 @@ class PayController extends Controller
         $activity_id = $data['activity_id'];
         $assessment_id = $data['assessment_id'];
         $pay_image = $data['pay_image'];
+        list($name, $extension) = explode('.', $pay_image);
+        $pay_realimage = Carbon::now()->timestamp . '.' . $extension;
         $pay_type = $data['pay_type'];
         $assessment = Assessment::get_one($assessment_id);
 
         if ($request->hasFile('pay_image_file')){
-            $destinationPath = self::BASE_PATH . $assessment->first_name . " " . $assessment->last_name . "/";
-            $upload_success = $data['pay_image_file']->move($destinationPath, $pay_image);
+            // $destinationPath = self::BASE_PATH . $assessment->first_name . " " . $assessment->last_name . "/";
+            $destinationPath = self::BASE_PATH;
+            $upload_success = $data['pay_image_file']->move($destinationPath, $pay_realimage);
         } else {
             $pay_image = "";
+            $pay_realimage = "";
         }
 
         // insert to tbl_transaction
         $transaction['assessment_id'] = $assessment_id;
         $transaction['pay_image'] = $pay_image;
+        $transaction['pay_realimage'] = $pay_realimage;
         $transaction['pay_type'] = $pay_type;
         if (Transaction::update_by_assessment($transaction)) {
             // update to tbl_admission

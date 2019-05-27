@@ -21,7 +21,12 @@ class Invoice extends Base
 			->leftjoin('tbl_assessment AS t3', 't2.assessment_id', '=', 't3.id')
 			->leftjoin('tbl_user AS t4', 't3.user_id', '=', 't4.id')
 			->select('t1.id', 't3.first_name', 't3.last_name', 't2.activity_type', 't2.status', 't1.msg_title', 't1.msg_content', 't1.created_at', 't4.name AS user_name')
-			->where('t1.id', '=', $id);
+			->where('t1.id', '=', $id)
+			->where('t2.status', '!=', 0);
+
+		DB::table(self::$table)->where('id', $id)->update([
+			'isBrowsed' => 1
+		]);
 
 		$invoice = $query->first();
 		return $invoice;
@@ -33,7 +38,9 @@ class Invoice extends Base
 			->leftjoin('tbl_activity AS t2', 't1.activity_id', '=', 't2.id')
 			->leftjoin('tbl_assessment AS t3', 't2.assessment_id', '=', 't3.id')
 			->leftjoin('tbl_user AS t4', 't3.user_id', '=', 't4.id')
-			->select('t1.id', 't3.id AS assessment_id', 't3.first_name', 't3.last_name', 't1.msg_title', 't1.created_at', 't4.name AS user_name');
+			->select('t1.id', 't3.id AS assessment_id', 't3.first_name', 't3.last_name', 't1.msg_title', 't1.isBrowsed', 't1.created_at', 't4.name AS user_name')
+			->orderBy('t1.created_at', 'DESC')
+			->where('t2.status', '!=', 0);
 
 		if (isset($filter) && !blank($filter)) {
 			$query = self::conditions($filter, $query);

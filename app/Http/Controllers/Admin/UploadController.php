@@ -57,12 +57,13 @@ class UploadController extends Controller
 
 		// upload image
 		$assessment = Activity::get_assessment($activity->id);
-		$destPath = 'upload_data/'. $assessment->first_name." ".$assessment->last_name."/";
+		$destPath = 'upload_data'. "/";
 		$file = $request->file('image_name');
-		$fileName = $file->getClientOriginalName();
+		$fileName = now()->timestamp .'.'. $file->extension();
 		$file->move($destPath, $fileName);
 
-		$filter['image_name'] = $fileName;
+		$filter['image_name'] = $file->getClientOriginalName();
+		$filter['image_realname'] = $fileName;
 		Admission::updateAdmission($filter);
 
 		return response()->json(['result' => 'success']);
@@ -73,8 +74,7 @@ class UploadController extends Controller
 
 		$docs_list = Upload::get_docs($assessment_id);
 
-		$assessment = Assessment::get_one($assessment_id);
-		$name_dir = asset('upload_data').'/'.$assessment->first_name.' '.$assessment->last_name;
+		$name_dir = asset('upload_data');
 
 		$data = [
 			'result' => 'success',

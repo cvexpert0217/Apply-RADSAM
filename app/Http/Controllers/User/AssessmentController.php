@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Assessment;
@@ -17,13 +18,19 @@ class AssessmentController extends Controller
         //register assessment
         $data = $request->all();
         if ($request->hasFile('resume_filename')){
-            $destinationPath = self::BASE_PATH . $data['first_name'] . " " . $data['last_name'] . "/";
+            // $destinationPath = self::BASE_PATH . $data['first_name'] . " " . $data['last_name'] . "/";
+            $destinationPath = self::BASE_PATH;
             $filename = $data['file_name'];
-            $upload_success = $data['resume_filename']->move($destinationPath, $filename);
+            list($name, $extension) = explode('.', $filename);
+            $realname = Carbon::now()->timestamp . '.' . $extension;
+            $upload_success = $data['resume_filename']->move($destinationPath, $realname);
             $data['resume_filename'] = $filename;
+            $data['resume_realname'] = $realname;
         } else {
             $data['resume_filename'] = "";
+            $data['resume_realname'] = "";
         }
+
         $requested_services = "";
 
         if ($request->exists('educational_consultation') == "1")
@@ -87,6 +94,39 @@ class AssessmentController extends Controller
             $requested_services .= ",0";
 
         $data['requested_services'] = $requested_services;
+        if (!$request->has('indicate'))
+            $data['indicate'] = null;
+
+        if (!$request->has('indicate_overall'))
+            $data['indicate_overall'] = null;
+
+        if (!$request->has('indicate_writing'))
+            $data['indicate_writing'] = null;
+
+        if (!$request->has('indicate_listening'))
+            $data['indicate_listening'] = null;
+
+        if (!$request->has('indicate_reading'))
+            $data['indicate_reading'] = null;
+
+        if (!$request->has('indicate_speaking'))
+            $data['indicate_speaking'] = null;
+
+        if (!$request->has('french_writing'))
+            $data['french_writing'] = null;
+
+        if (!$request->has('french_listening'))
+            $data['french_listening'] = null;
+
+        if (!$request->has('french_reading'))
+            $data['french_reading'] = null;
+
+        if (!$request->has('french_speaking'))
+            $data['french_speaking'] = null;
+
+        if (!$request->has('refusal_reason'))
+            $data['refusal_reason'] = null;
+
         $data['user_id'] = $request->session()->get(config('radasm.session.user'))->id;
 
         Assessment::insert($data);

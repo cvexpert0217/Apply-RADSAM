@@ -47,7 +47,7 @@
 			</li>
 
 			<li class="nav-item nav-dropdown">
-				<a class="nav-link" href="/admin/invoice"><i class="icon-envelope-open"></i> Invoice </a>
+				<a class="nav-link" href="/admin/invoice"><i class="icon-envelope-open"></i> Inbox </a>
 			</li>
 
 {{--			<li class="nav-title mt-auto" style="font-size: 20px;color: #ddd;">--}}

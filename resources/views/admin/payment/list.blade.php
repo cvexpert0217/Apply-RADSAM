@@ -64,7 +64,7 @@
                       <td>{{ $str_type }}</td>
                       <td>{{ $activity->pay_price }}</td>
                       <td>
-                        <a href="{{ asset('upload_data').'/'.$activity->first_name.' '.$activity->last_name.'/'.$activity->pay_image }}" target="_blank">{{ $activity->pay_image }}</a>
+                        <a href="{{ asset('upload_data').'/'.$activity->pay_realimage }}" target="_blank">{{ $activity->pay_image }}</a>
                       </td>
                       <td>{{ $str_pay_type }}</td>
                       <td>{{ $activity->updated_at }}</td>

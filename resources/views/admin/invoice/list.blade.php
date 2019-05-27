@@ -17,6 +17,7 @@
 										<th width="50">No</th>
 										<th width="300">Name</th>
 										<th width="600">Title</th>
+										<th width="200">Read?</th>
 										<th width="300">Date</th>
 										<th width="200">Registrant</th>
 										<th width="200">Action</th>
@@ -40,6 +41,7 @@
 												<a href="/admin/assessment_category/detail/{{ $item->assessment_id }}">{{ $item->first_name }} {{ $item->last_name }}</a>
 											</td>
 											<td>{{ $item->msg_title }}</td>
+											<td>{{ $item->isBrowsed? 'Yes': 'No'}}</td>
 											<td>{{ $item->created_at}}</td>
 											<td>{{ $item->user_name }}</td>
 											<td>

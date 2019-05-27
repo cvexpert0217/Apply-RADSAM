@@ -20,7 +20,8 @@ class Assessment extends Base
 		//"select t1.*, t2.name as user_name from tbl_assessment t1 left join tbl_user t2 on t1.user_id = t2.id where t1.deleted = 0"
 		$query = DB::table(self::$table.' AS t1')
 			->leftjoin('tbl_user AS t2', 't1.user_id', '=', 't2.id')
-			->select('t1.*', 't2.name AS user_name');
+			->select('t1.*', 't2.name AS user_name')
+			->orderBy('t1.created_at', 'DESC');
 		if (isset($filter) && !blank($filter)) {
 			$query = self::conditions_for_category($filter, $query);
 		}
@@ -67,6 +68,12 @@ class Assessment extends Base
 					'gpa_score' => $category['gpa_score'],
 					'english_proficiency' => $category['english_proficiency'],
 					'indicate' => $category['indicate'],
+					'indicate_overall' => $category['indicate_overall'],
+					'indicate_writing' => $category['indicate_writing'],
+					'indicate_listening' => $category['indicate_listening'],
+					'indicate_reading' => $category['indicate_reading'],
+					'indicate_speaking' => $category['indicate_speaking'],
+					'french_proficiency' => $category['french_proficiency'],
 					'french_proficiency' => $category['french_proficiency'],
 					'latest_job_title' => $category['latest_job_title'],
 					'work_experience_years' => $category['work_experience_years'],
@@ -76,6 +83,7 @@ class Assessment extends Base
 					'our_job' => $category['our_job'],
 					'agent_name' => $category['agent_name'],
 					'resume_filename' => $category['resume_filename'],
+					'resume_realname' => $category['resume_realname'],
 					'assessment_type' => $category['assessment_type'],
 					'updated_at' => now(),
 				]
@@ -99,7 +107,8 @@ class Assessment extends Base
 		$query = DB::table('tbl_activity AS t1')
 			->leftjoin(self::$table.' AS t2', 't1.assessment_id', '=', 't2.id')
 			->leftjoin('tbl_user AS t3', 't3.id', '=', 't2.user_id')
-			->select('t1.*', 't2.first_name', 't2.last_name', 't2.assessment_type', 't3.name AS user_name');
+			->select('t1.*', 't2.first_name', 't2.last_name', 't2.assessment_type', 't3.name AS user_name')
+			->orderBy('t1.updated_at', 'DESC');
 		if (isset($filter) && !blank($filter)) {
 			$query = self::conditions_for_list($filter, $query);
 		}
@@ -153,6 +162,12 @@ class Assessment extends Base
                 'gpa_score' => $assessment['gpa_score'],
                 'english_proficiency' => $assessment['english_proficiency'],
                 'indicate' => $assessment['indicate'],
+				'indicate_overall' => $assessment['indicate_overall'],
+				'indicate_writing' => $assessment['indicate_writing'],
+				'indicate_listening' => $assessment['indicate_listening'],
+				'indicate_reading' => $assessment['indicate_reading'],
+				'indicate_speaking' => $assessment['indicate_speaking'],
+				'french_proficiency' => $assessment['french_proficiency'],
                 'french_proficiency' => $assessment['french_proficiency'],
                 'latest_job_title' => $assessment['latest_job_title'],
                 'work_experience_years' => $assessment['work_experience_years'],
@@ -162,6 +177,7 @@ class Assessment extends Base
                 'our_job' => $assessment['our_job'],
                 'agent_name' => $assessment['agent_name'],
                 'resume_filename' => $assessment['resume_filename'],
+                'resume_realname' => $assessment['resume_realname'],
                 'assessment_type' => $assessment['assessment_type'],
                 'user_id' => $assessment['user_id'],
 				'created_at' => now(),

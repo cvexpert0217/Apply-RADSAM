@@ -253,5 +253,36 @@ $(document).ready(function($){
         }
 
         return true;
-    })
+    });
+
+    $('input[name="english_proficiency"]').on('click', function () {
+        if ($(this).val() == 0) {
+            $('#english_proficiency_indicate').attr('hidden', false);
+            $('input[name="indicate"]')[0].checked = false;
+            $('input[name="indicate"]')[1].checked = false;
+        } else {
+            $('#english_proficiency_indicate').attr('hidden', true);
+            $('#english_proficiency_true').attr('hidden', true);
+        }
+    });
+
+    $('input[name="indicate"]').on('change', function () {
+        $('#english_proficiency_true').attr('hidden', false);
+    });
+
+    $('input[name="french_proficiency"]').on('click', function () {
+        if ($(this).val() == 0) {
+            $('#franch_proficiency_true').attr('hidden', false);
+        } else {
+            $('#franch_proficiency_true').attr('hidden', true);
+        }
+    });
+
+    $('input[name="applid"]').on('click', function () {
+        if ($(this).val() == 0) {
+            $('#refusal-reason').attr('hidden', false);
+        } else {
+            $('#refusal-reason').attr('hidden', true);
+        }
+    });
 });

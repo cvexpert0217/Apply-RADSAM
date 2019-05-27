@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Payment;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Models\University;
@@ -63,12 +64,15 @@ class AssessmentController extends Controller
 		}
 
 	    if ($request->hasFile('resume_filename')){
-		    $destinationPath = self::BASE_PATH . $category['first_name'] . " " . $category['last_name'] . "/";
-		    $filename = $category['changed_filename'];
-		    if ($filename) {
-			    $upload_success = $category['resume_filename']->move($destinationPath, $filename);
-			    $category['resume_filename'] = $filename;
-		    }
+	    	$file = $category['resume_filename'];
+		    $category['resume_filename'] = $file->getClientOriginalName();
+
+		    $destinationPath = self::BASE_PATH . "/";
+		    $filename = now()->timestamp.'.'.$file->extension();
+		    $category['resume_realname'] = $filename;
+
+
+		    $file->move($destinationPath, $filename);
 	    } else {
 		    $category['resume_filename'] = $category['changed_filename'];
 	    }
@@ -136,6 +140,40 @@ class AssessmentController extends Controller
 		    $requested_services .= ",0";
 
 	    $category['requested_services'] = $requested_services;
+
+	    if (!$request->has('indicate'))
+		    $category['indicate'] = null;
+
+	    if (!$request->has('indicate_overall'))
+		    $category['indicate_overall'] = null;
+
+	    if (!$request->has('indicate_writing'))
+		    $category['indicate_writing'] = null;
+
+	    if (!$request->has('indicate_listening'))
+		    $category['indicate_listening'] = null;
+
+	    if (!$request->has('indicate_reading'))
+		    $category['indicate_reading'] = null;
+
+	    if (!$request->has('indicate_speaking'))
+		    $category['indicate_speaking'] = null;
+
+	    if (!$request->has('french_writing'))
+		    $category['french_writing'] = null;
+
+	    if (!$request->has('french_listening'))
+		    $category['french_listening'] = null;
+
+	    if (!$request->has('french_reading'))
+		    $category['french_reading'] = null;
+
+	    if (!$request->has('french_speaking'))
+		    $category['french_speaking'] = null;
+
+	    if (!$request->has('refusal_reason'))
+		    $category['refusal_reason'] = null;
+
 		Assessment::update_category($category);
 
 	    $filter['deleted'] = 0;

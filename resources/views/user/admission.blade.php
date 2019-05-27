@@ -17,7 +17,7 @@
                                         <div class="col-md-10">
                                             <div class="confirm-admission">
                                                 <div class="col-md-12">
-                                                    <img src="{{ asset($file_url) }}">
+                                                    <img style="width: 100%; height: 100%;" src="{{ asset($file_url) }}">
                                                 </div>
                                                 <div class="col-md-12" style="margin-top: 20px;">
                                                     <strong>{{ $message }}</strong>

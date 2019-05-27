@@ -101,6 +101,7 @@ class Transaction extends Base
         DB::table(self::$table)->where('assessment_id', $transaction['assessment_id'])
             ->update([
                     'pay_image' => $transaction['pay_image'],
+                    'pay_realimage' => $transaction['pay_realimage'],
                     'pay_type' => $transaction['pay_type'],
                     'updated_at' => now(),
                 ]

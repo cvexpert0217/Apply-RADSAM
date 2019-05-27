@@ -28,7 +28,8 @@ class Admission extends Base
 	        ->leftjoin('tbl_user AS t3', 't3.id', '=', 't2.user_id')
 	        ->leftjoin('tbl_university As t4', 't1.university_id', '=', 't4.id')
             ->select('t1.id', 't1.assessment_id', 't2.first_name', 't2.last_name', 't2.assessment_type', 't4.name AS university_name', 't1.fee_price', 't1.docs_name', 't1.updated_at', 't3.name AS user_name')
-            ->where('t1.admission_text', '!=', NULL);
+            //->where('t1.admission_text', '!=', NULL)
+	        ->orderBy('t1.updated_at', 'DESC');
 
         $admissions = parent::paginate($filter, $query);
         return $admissions;
@@ -61,6 +62,7 @@ class Admission extends Base
 	    DB::table('tbl_admission')->where('assessment_id', $filter['assessment_id'])
 		    ->update([
 				    'admission_image' => $filter['image_name'],
+				    'admission_realimage' => $filter['image_realname'],
 				    'admission_text' => $filter['admission_msg'],
 				    'updated_at' => now(),
 			    ]

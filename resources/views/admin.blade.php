@@ -18,7 +18,9 @@
 	<!-- Main styles for this application -->
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<!-- Styles required by this views -->
-	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">  
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+	<script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
+
 </head>
 <!-- BODY options, add following classes to body to change options
 '.header-fixed' - Fixed Header
